@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
+
     public function getAllPost()
     {
         $posts = DB::table('post')->get();
