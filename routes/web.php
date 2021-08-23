@@ -30,6 +30,6 @@ Route::group(['prefix'=>'posts'],function(){
     Route ::post('/add-post',[PostController::class,'addPostSubmit'])->name('post.addsubmit');
     Route ::get('/add-post',[PostController::class,'addPost'])->name('post.add');
     Route ::get('/post/{id?}',[PostController::class,'getPostId'])->name('post.getbyid');
-    Route ::delete('/delete-post/{id}',[PostController::class,'deletePost'])->name('post-delete');
+    Route ::delete('/delete-post/{post}',[PostController::class,'deletePost'])->name('post-delete');
     Route ::get('/edit-post/{id}',[PostController::class,'editpost'])->name('post.edit');
 });
