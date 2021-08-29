@@ -4,6 +4,7 @@ use App\Http\Controllers\FluentController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\Todolistcontroller;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -33,3 +34,9 @@ Route::group(['prefix'=>'posts'],function(){
     Route ::delete('/delete-post/{post}',[PostController::class,'deletePost'])->name('post-delete');
     Route ::get('/edit-post/{id}',[PostController::class,'editpost'])->name('post.edit');
 });
+//Route::group(['prefix'=>'tasks'],function(){
+  Route ::get('/add-task',[Todolistcontroller::class,'addtask'])->name('add.task');
+ // Route ::post('/confirm',[Todolistcontroller::class,'confirmtask'])->name('confirm.task');
+  Route ::get('/',[Todolistcontroller::class,'getallTasks'])->name('gettAlltasks.task');
+  Route ::delete('/delete-task{id}',[Todolistcontroller::class,'deletetask'])->name('delete.task');
+//});

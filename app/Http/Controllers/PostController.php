@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -10,7 +11,7 @@ class PostController extends Controller
 
     public function getAllPost()
     {
-        $posts = DB::table('post')->get();
+        $posts = Post::all();
         return view('post',compact('posts'));
     }
     public function addPost()
@@ -19,7 +20,7 @@ class PostController extends Controller
     }
     public function addPostSubmit(Request $request)
     {
-        DB::table('post')->insert([
+        Post::create([
             'title'=>$request->title,
             'body' =>$request->body
         ]);
@@ -30,16 +31,16 @@ class PostController extends Controller
         try {
             if($id == null)
             abort(404,'error');
-            $post=DB::table('post')->where('id',$id)->first();
+            $post = Post::find($id);
             return view('single-post',compact('post'));
         } catch (\Throwable $th) {
             return response()->json('id not found');
         }
 
     }
-    public function deletePost($id)
+    public function deletePost(Post $post)
     {
-        DB::table('post')->where('id',$id)->delete();
+        $post->delete();
         return back()->with('post_deleted','post has been deleted successfully');
 
     }
