@@ -13,27 +13,26 @@
      <div class="card shadow-sn">
          <div class="card body">
              <h3>to-do list</h3>
-             <form action ="{{route(add-task)}}" method ="POST" autocomplete="off">
+             <form action="{{route('add.task')}}" method="POST" autocomplete="off">
                 @csrf
                 <div class="input-group">
-                    <input type="text" name="contant" class="form-control" placeholder="Add new Task">
-                    <button type="submit" class="btn btn-dark btn-sm px4"><i class="fas fa-plus"> </i></button>
-
+                    <input type="text" name="content" class="form-control" placeholder="Add new Task">
+                    <button type="submit" class="btn btn-dark btn-sm px4"><i class="fas fa-plus">Add </i></button>
                 </div>
             </form>
             @if (count($tasks))
-            <ul class="list-group list-group-flush mt-3">
-            @foreach ($tasks as $task )
-                <li class="list-group-item">
-                    <form action="{{route('delete',$taska->id)}}" method="POST">
-                        {{$tasks->content}}
-                        @csrf
-                        @method('delete')
-                        <button type="submit" class="btn btn-link btn-sm float-end"><i class ="fas fa-trash"></i></button>
-                    </form>
-                </li>
-            @endforeach
-            </ul>
+                <ul class="list-group list-group-flush mt-3">
+                    @foreach ($tasks as $task )
+                        <li class="list-group-item">
+                            <form action="{{route('delete.task',$task->id)}}" method="POST">
+                                {{$task->content}}
+                                @csrf
+                                @method('delete')
+                                <button type="submit" class="btn btn-link btn-sm float-end"><i class ="fas fa-trash"></i></button>
+                            </form>
+                        </li>
+                    @endforeach
+                </ul>
             @else
             <p class ="text=center mt-3">no tasks</p>
             @endif

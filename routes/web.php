@@ -34,9 +34,10 @@ Route::group(['prefix'=>'posts'],function(){
     Route ::delete('/delete-post/{post}',[PostController::class,'deletePost'])->name('post-delete');
     Route ::get('/edit-post/{id}',[PostController::class,'editpost'])->name('post.edit');
 });
-//Route::group(['prefix'=>'tasks'],function(){
-  Route ::get('/add-task',[Todolistcontroller::class,'addtask'])->name('add.task');
+Route::group(['prefix'=>'tasks'],function(){
+  Route ::post('/add-task',[Todolistcontroller::class,'addtask'])->name('add.task');
  // Route ::post('/confirm',[Todolistcontroller::class,'confirmtask'])->name('confirm.task');
   Route ::get('/',[Todolistcontroller::class,'getallTasks'])->name('gettAlltasks.task');
-  Route ::delete('/delete-task{id}',[Todolistcontroller::class,'deletetask'])->name('delete.task');
-//});
+  Route ::delete('/delete/{todo}',[Todolistcontroller::class,'deletetask'])->name('delete.task');
+});
+

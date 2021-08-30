@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\task;
+use App\Todo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -10,20 +10,27 @@ class Todolistcontroller extends Controller
 {
     public function getallTasks()
     {
-        $tasks = task::all();
-        return view('Tasks',compact('tasks'));
+        $tasks = Todo::all();
+        return view('add-task',compact('tasks'));
+
     }
     public function addtask( Request $request)
     {
-       $data = $request->validate([
+
+       $this->validate($request,[
            'content' =>'required'
        ]);
+
+       $todo = Todo::create($request->all());
+
+       return back()->with('success','تمت اضافة المهمة بنجاح');
+
     }
 
 
-    public function deletetask( task $tasks)
+    public function deletetask(Todo $task)
     {
-        $tasks ->delete();
+        $task->delete();
         return back();
     }
     public function confirmtask()

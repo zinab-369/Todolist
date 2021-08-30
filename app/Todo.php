@@ -4,7 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class task extends Model
+class Todo extends Model
 {
+    public $table = 'todolist';
     protected $fillable = ['content'];
-    public $timestamps = false;}
+    // public $timestamps = false;
+}
