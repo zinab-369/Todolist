@@ -22,6 +22,7 @@
             </form>
             @if (count($tasks))
                 <ul class="list-group list-group-flush mt-3">
+                
                     @foreach ($tasks as $task )
                         <li class="list-group-item">
                             <form action="{{route('delete.task',$task->id)}}" method="POST">
